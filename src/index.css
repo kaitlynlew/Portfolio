@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+@import './fonts/italianno.css';
+
+:root {
+  /* Colors from design */
+  --color-bg: #ffffff;
+  --color-bg-hero: #f8fafb;
+  --color-grid: rgba(90, 141, 171, 0.12);
+  --color-accent: #5A8DAB;
+  --color-accent-hover: #4a7a96;
+  --color-text-primary: #2d3748;
+  --color-text-secondary: #5a6575;
+  --color-text-muted: #718096;
+  --color-text-light: #8b9aab;
+  --color-border: #a7a7a7;
+  --color-footer-bg: #3F5D72;
+  --color-footer-text: #ffffff;
+
+  font-family: 'DM Sans', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
