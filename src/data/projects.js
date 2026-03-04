@@ -7,6 +7,8 @@ export const PROJECTS = [
     tags: ["App", "Website", "UI/UX Design", "UI/UX Development"],
     image: "/images/safespace-mockup.png",
     category: "uiux",
+    githubUrl: "https://github.com/Crite-Spranberries/SafeSpace",
+    websiteUrl: "",
   },
   {
     id: "sojubly",

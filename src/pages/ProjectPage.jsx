@@ -1,14 +1,15 @@
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getProjectById } from '../data/projects'
-import SojublyProject from './SojublyProject'
-// import KatseyeProject from './KatseyeProject'
-import KoreaBrochureProject from './KoreaBrochureProject'
+import { getCaseStudyByProjectId } from '../data/projectCaseStudies'
+import GraphicProjectPage from './GraphicProjectPage'
 import UnderConstructionPage from './UnderConstructionPage'
+import SafeSpaceCaseStudy from './SafeSpaceCaseStudy'
 
 export default function ProjectPage() {
   const { projectId } = useParams()
   const project = getProjectById(projectId)
+  const caseStudy = project ? getCaseStudyByProjectId(projectId) : null
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -27,16 +28,16 @@ export default function ProjectPage() {
     )
   }
 
-  if (projectId === 'sojubly') {
-    return <SojublyProject />
+  if (project.id === 'safespace') {
+    return <SafeSpaceCaseStudy project={project} />
   }
 
-  if (projectId === 'katseye') {
+  if (caseStudy) {
+    return <GraphicProjectPage project={project} />
+  }
+
+  if (project.category === 'graphic') {
     return <UnderConstructionPage />
-  }
-
-  if (projectId === 'korea') {
-    return <KoreaBrochureProject />
   }
 
   return (

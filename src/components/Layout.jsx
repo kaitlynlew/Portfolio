@@ -1,10 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../App.css'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Layout() {
   const location = useLocation()
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const footerRef = useRef(null)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
 
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 400)
@@ -12,12 +21,39 @@ export default function Layout() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const footer = footerRef.current
+    if (!footer) return
+    const items = [...footer.children]
+    gsap.set(items, { opacity: 0, y: 32 })
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: footer,
+        start: 'top 88%',
+        toggleActions: 'play none none reverse',
+      },
+    })
+    tl.to(items, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power3.out',
+    })
+    return () => {
+      tl.scrollTrigger?.kill()
+    }
+  }, [])
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const isGridPage = location.pathname === '/' || location.pathname === '/about'
+
   return (
-    <>
+    <div className={isGridPage ? 'page-grid-shell' : ''}>
+      {isGridPage && <div className="page-grid-bg" aria-hidden="true" />}
       <header className="header">
         <NavLink
           to="/"
@@ -45,7 +81,7 @@ export default function Layout() {
             Work
           </NavLink>
           <NavLink to="/about">About</NavLink>
-          <a href="mailto:l.kaitlyn@gmail.com">Contact</a>
+          <a href="mailto:l.kaitlyn@gmail.com" target="_blank" rel="noopener noreferrer">Contact</a>
         </nav>
       </header>
 
@@ -53,14 +89,14 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer id="contact" className="footer">
-        <h2 className="footer-title">Let&apos;s Chat!</h2>
+      <footer id="contact" className="footer" ref={footerRef}>
+        <h2 className="footer-title">｡⊹ ˚— ʚ Let's Chat ɞ —˚ ⊹｡</h2>
         <div className="footer-links">
           <a href="https://www.linkedin.com/in/kaitlynrlew/" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
-          <a href="mailto:l.kaitlyn@gmail.com">Email</a>
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+          <a href="mailto:l.kaitlyn@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+          <a href="/documents/resume.pdf" target="_blank" rel="noopener noreferrer">
             Resume
           </a>
         </div>
@@ -71,18 +107,6 @@ export default function Layout() {
           Designed and coded by © Kaitlyn Lew, 2026.
         </p>
       </footer>
-
-      {/* Back to top button */}
-      {/* {showBackToTop && (
-        <button
-          type="button"
-          className="back-to-top"
-          onClick={scrollToTop}
-          aria-label="Back to top"
-        >
-          ⬆ Back to top
-        </button>
-      )} */}
-    </>
+    </div>
   )
 }
