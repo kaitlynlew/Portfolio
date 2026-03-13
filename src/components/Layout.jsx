@@ -29,7 +29,7 @@ export default function Layout() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: footer,
-        start: 'top 88%',
+        start: 'top bottom',
         toggleActions: 'play none none reverse',
       },
     })
@@ -40,9 +40,23 @@ export default function Layout() {
       stagger: 0.1,
       ease: 'power3.out',
     })
-    return () => {
-      tl.scrollTrigger?.kill()
+    // If footer is already in view (e.g. short page like About), show it immediately
+    const inView = () => {
+      const rect = footer.getBoundingClientRect()
+      return rect.top < window.innerHeight * 0.95
     }
+    if (inView()) {
+      tl.play(0)
+    } else {
+      const id = setTimeout(() => {
+        if (inView()) tl.play(0)
+      }, 150)
+      return () => {
+        clearTimeout(id)
+        tl.scrollTrigger?.kill()
+      }
+    }
+    return () => tl.scrollTrigger?.kill()
   }, [])
 
   const scrollToTop = () => {

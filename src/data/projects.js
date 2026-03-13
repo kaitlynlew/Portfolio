@@ -8,7 +8,7 @@ export const PROJECTS = [
     image: "/images/safespace-mockup.png",
     category: "uiux",
     githubUrl: "https://github.com/Crite-Spranberries/SafeSpace",
-    websiteUrl: "",
+    websiteUrl: "https://safe-space.figma.site/",
   },
   {
     id: "sojubly",
