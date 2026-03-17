@@ -185,7 +185,7 @@ export default function JamBoard() {
 
   return (
     <section className="jam-board" aria-label="Jam board - draw and export">
-      <h2 className="jam-board-title">Jam Board</h2>
+      <h2 className="jam-board-title">. ݁₊ ⊹ . ݁ Jam Board ݁ . ⊹ ₊ ݁.</h2>
       <div className="jam-board-canvas-wrap" ref={containerRef}>
         <canvas
           ref={canvasRef}

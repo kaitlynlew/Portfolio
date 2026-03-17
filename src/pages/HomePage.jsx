@@ -186,13 +186,15 @@ export default function HomePage() {
                 </div>
                 <Link
                   to={
-                    ['safespace', 'sojubly', 'katseye', 'korea'].includes(project.id)
+                    ['safespace', 'inklink', 'sojubly', 'katseye', 'korea'].includes(project.id)
                       ? `/project/${project.id}`
                       : '/under-construction'
                   }
                   className="project-cta"
                 >
-                  View Case Study
+                  {['safespace', 'inklink', 'sojubly', 'katseye', 'korea'].includes(project.id)
+                    ? 'View Case Study'
+                    : 'View Project'}
                 </Link>
               </div>
               <div className="project-card-image">

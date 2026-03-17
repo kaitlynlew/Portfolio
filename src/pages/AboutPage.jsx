@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import JamBoard from '../components/JamBoard'
+import ExploreInterests from '../components/ExploreProjects'
 
 export default function AboutPage() {
   const headingRef = useRef(null)
@@ -24,8 +25,9 @@ export default function AboutPage() {
   return (
     <section className="about-page">
       <div className="about-grid-bg" aria-hidden="true" />
+      <ExploreInterests />
       <div className="about-inner">
-        <h1 ref={headingRef} className="about-heading">hello, i&apos;m kaitlyn!</h1>
+        <h1 ref={headingRef} className="about-heading">hi, i'm kaitlyn 𐙚˚࿔</h1>
         <div ref={imageRef} className="about-image-wrap">
           <img
             src="/images/portrait.png"
