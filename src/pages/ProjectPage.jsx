@@ -5,6 +5,7 @@ import { getCaseStudyByProjectId } from '../data/projectCaseStudies'
 import GraphicProjectPage from './GraphicProjectPage'
 import UnderConstructionPage from './UnderConstructionPage'
 import SafeSpaceCaseStudy from './SafeSpaceCaseStudy'
+import InkLinkCaseStudy from './InkLinkCaseStudy'
 
 export default function ProjectPage() {
   const { projectId } = useParams()
@@ -30,6 +31,10 @@ export default function ProjectPage() {
 
   if (project.id === 'safespace') {
     return <SafeSpaceCaseStudy project={project} />
+  }
+
+  if (project.id === 'inklink') {
+    return <InkLinkCaseStudy project={project} />
   }
 
   if (caseStudy) {

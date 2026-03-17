@@ -27,6 +27,8 @@ export const PROJECTS = [
     tags: ["App", "Website", "UI/UX Design"],
     image: "/images/inklink-mockup.png",
     category: "uiux",
+    githubUrl: "https://inklink-fe.onrender.com/",
+    websiteUrl: "https://inklink.framer.website/",
   },
   {
     id: "korea",
