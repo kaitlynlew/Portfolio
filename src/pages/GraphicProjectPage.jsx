@@ -106,17 +106,47 @@ export default function GraphicProjectPage({ project }) {
         </section>
       )}
 
+      {showDieline && (
+        <section className="project-section">
+          <div className="project-section-inner">
+            <h2 className="project-section-title">Dieline</h2>
+            <div className="project-dieline-stack">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="project-placeholder-box project-dieline-image project-placeholder-wide"
+                >
+                  {dielineImages[i]?.src ? (
+                    <img
+                      src={dielineImages[i].src}
+                      alt={dielineImages[i].alt ?? `${project.title} dieline ${i + 1}`}
+                    />
+                  ) : (
+                    <span className="project-placeholder-label">Dieline image {i + 1}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="project-section">
         <div className="project-section-inner">
           <h2 className="project-section-title">Final Design</h2>
-          {finalDesignImage ? (
-            <div className="project-hero-image" style={{ marginBottom: '1.5rem' }}>
-              <img src={finalDesignImage.src} alt={finalDesignImage.alt ?? project.title} />
-            </div>
-          ) : (
-            <div className="project-hero-placeholder project-placeholder-box" style={{ minHeight: 280, marginBottom: '1.5rem' }}>
-              <span className="project-placeholder-label">Image placeholder</span>
-            </div>
+          {project.id === 'sojubly' ? null : (
+            finalDesignImage ? (
+              <div className="project-hero-image" style={{ marginBottom: '1.5rem' }}>
+                <img src={finalDesignImage.src} alt={finalDesignImage.alt ?? project.title} />
+              </div>
+            ) : (
+              <div
+                className="project-hero-placeholder project-placeholder-box"
+                style={{ minHeight: 280, marginBottom: '1.5rem' }}
+              >
+                <span className="project-placeholder-label">Image placeholder</span>
+              </div>
+            )
           )}
           <div className="project-final-carousel">
             <div className="project-final-carousel-inner">
@@ -176,28 +206,6 @@ export default function GraphicProjectPage({ project }) {
           </div>
         </div>
       </section>
-
-      {showDieline && (
-        <section className="project-section">
-          <div className="project-section-inner">
-            <h2 className="project-section-title">Dieline</h2>
-            <div className="project-dieline-stack">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="project-placeholder-box project-dieline-image project-placeholder-wide"
-                >
-                  {dielineImages[i]?.src ? (
-                    <img src={dielineImages[i].src} alt={dielineImages[i].alt ?? `${project.title} dieline ${i + 1}`} />
-                  ) : (
-                    <span className="project-placeholder-label">Dieline image {i + 1}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       <div className="project-back-wrap">
         <Link to="/#work" className="project-back-link">

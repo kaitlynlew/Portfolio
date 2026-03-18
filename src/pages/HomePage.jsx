@@ -220,7 +220,8 @@ export default function HomePage() {
                   }
                   className="project-cta"
                 >
-                  {['safespace', 'inklink', 'sensa'].includes(project.id) || getCaseStudyByProjectId(project.id)
+                  {(['safespace', 'inklink', 'sensa'].includes(project.id) || getCaseStudyByProjectId(project.id)) &&
+                  !['sojubly', 'korea'].includes(project.id)
                     ? 'View Case Study'
                     : 'View Project'}
                 </Link>
