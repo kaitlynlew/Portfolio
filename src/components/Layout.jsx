@@ -95,7 +95,15 @@ export default function Layout() {
             Work
           </NavLink>
           <NavLink to="/about">About</NavLink>
-          <a href="mailto:l.kaitlyn@gmail.com" target="_blank" rel="noopener noreferrer">Contact</a>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault()
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }}
+          >
+            Contact
+          </a>
         </nav>
       </header>
 

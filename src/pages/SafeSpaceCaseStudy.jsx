@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const TIMELINE_SECTIONS = [
   { id: 'competitive-analysis', label: 'COMPETITIVE ANALYSIS' },
   { id: 'user-research', label: 'USER RESEARCH' },
@@ -10,6 +12,8 @@ const TIMELINE_SECTIONS = [
 ]
 
 export default function SafeSpaceCaseStudy({ project }) {
+  const [lightboxImage, setLightboxImage] = useState(null)
+  const [lightboxZoom, setLightboxZoom] = useState(1.5)
   const title = project?.title ?? 'SafeSpace'
   const description =
     project?.description ??
@@ -23,6 +27,16 @@ export default function SafeSpaceCaseStudy({ project }) {
 
   const scrollToTimeline = () => {
     document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const openLightbox = (src, alt) => {
+    setLightboxImage({ src, alt })
+    setLightboxZoom(1.5)
+  }
+
+  const closeLightbox = () => {
+    setLightboxImage(null)
+    setLightboxZoom(1.5)
   }
 
   return (
@@ -53,7 +67,7 @@ export default function SafeSpaceCaseStudy({ project }) {
                       GitHub ↗
                     </a>
                   )}
-                  {project?.websiteUrl || (
+                  {project?.websiteUrl && (
                     <a
                       href={project.websiteUrl || 'https://safe-space.figma.site'}
                       target="_blank"
@@ -79,16 +93,6 @@ export default function SafeSpaceCaseStudy({ project }) {
                 </ul>
               </div>
               <div className="uxcs-meta-column">
-                <p className="uxcs-meta-heading">Skills</p>
-                <ul className="uxcs-meta-list">
-                <li>Project Management</li>
-                <li>User Research</li>
-                <li>Marketing</li>
-                <li>Prototyping</li>
-                <li>Wireframing</li>
-                </ul>
-              </div>
-              <div className="uxcs-meta-column">
                 <p className="uxcs-meta-heading">Toolkit</p>
                 <ul className="uxcs-meta-list">
                   <li>Figma</li>
@@ -96,6 +100,12 @@ export default function SafeSpaceCaseStudy({ project }) {
                   <li>Photoshop</li>
                   <li>Premiere Pro</li>
                   <li>After Effects</li>
+                </ul>
+              </div>
+              <div className="uxcs-meta-column">
+                <p className="uxcs-meta-heading">Team</p>
+                <ul className="uxcs-meta-list">
+                  <li>8 members</li>
                 </ul>
               </div>
             </div>
@@ -171,18 +181,46 @@ export default function SafeSpaceCaseStudy({ project }) {
           <div className="uxcs-mission-visual">
             <div className="uxcs-mission-phones-top">
               <div className="uxcs-phone-frame uxcs-phone-frame-large">
-                <img src="/images/safespace-home.png" alt="Map reporting screen" />
+                <img
+                  src="/images/safespace-home.png"
+                  alt="Map reporting screen"
+                  onClick={() =>
+                    openLightbox('/images/safespace-home.png', 'Map reporting screen')
+                  }
+                  style={{ cursor: 'zoom-in' }}
+                />
               </div>
               <div className="uxcs-phone-frame uxcs-phone-frame-large">
-                <img src="/images/safespace-recording.png" alt="Voice recording screen" />
+                <img
+                  src="/images/safespace-recording.png"
+                  alt="Voice recording screen"
+                  onClick={() =>
+                    openLightbox('/images/safespace-recording.png', 'Voice recording screen')
+                  }
+                  style={{ cursor: 'zoom-in' }}
+                />
               </div>
             </div>
             <div className="uxcs-mission-phones-bottom">
               <div className="uxcs-phone-frame uxcs-phone-frame-large">
-                <img src="/images/safespace-safi.jpg" alt="Chat with Safi screen" />
+                <img
+                  src="/images/safespace-safi.jpg"
+                  alt="Chat with Safi screen"
+                  onClick={() =>
+                    openLightbox('/images/safespace-safi.jpg', 'Chat with Safi screen')
+                  }
+                  style={{ cursor: 'zoom-in' }}
+                />
               </div>
               <div className="uxcs-phone-frame uxcs-phone-frame-large">
-                <img src="/images/safespace-form.jpg" alt="SafeSpace app screen" />
+                <img
+                  src="/images/safespace-form.jpg"
+                  alt="SafeSpace app screen"
+                  onClick={() =>
+                    openLightbox('/images/safespace-form.jpg', 'SafeSpace app screen')
+                  }
+                  style={{ cursor: 'zoom-in' }}
+                />
               </div>
             </div>
           </div>
@@ -195,7 +233,17 @@ export default function SafeSpaceCaseStudy({ project }) {
           <p className="uxcs-section-label">COMPETITIVE ANALYSIS</p>
           <h2 className="uxcs-section-title">Exploring the Existing Solutions</h2>
           <div className="uxcs-image-placeholder uxcs-comp-placeholder">
-            <img src="/images/safespace-competitive_analysis.svg" alt="Competitive analysis image" />
+            <img
+              src="/images/safespace-competitive_analysis.svg"
+              alt="Competitive analysis image"
+              onClick={() =>
+                openLightbox(
+                  '/images/safespace-competitive_analysis.svg',
+                  'Competitive analysis image',
+                )
+              }
+              style={{ cursor: 'zoom-in' }}
+            />
           </div>
         </div>
       </section>
@@ -238,7 +286,14 @@ export default function SafeSpaceCaseStudy({ project }) {
           <div className="uxcs-personas-grid">
             <div className="uxcs-persona-item">
               <div className="uxcs-image-placeholder uxcs-persona-placeholder">
-                <img src="/images/safespace-primary_persona.svg" alt="Primary persona image" />
+                <img
+                  src="/images/safespace-primary_persona.svg"
+                  alt="Primary persona image"
+                  onClick={() =>
+                    openLightbox('/images/safespace-primary_persona.svg', 'Primary persona image')
+                  }
+                  style={{ cursor: 'zoom-in' }}
+                />
               </div>
               <a
                 href="/documents/safespace-primary_persona.pdf"
@@ -251,7 +306,17 @@ export default function SafeSpaceCaseStudy({ project }) {
             </div>
             <div className="uxcs-persona-item">
               <div className="uxcs-image-placeholder uxcs-persona-placeholder">
-                <img src="/images/safespace-secondary_persona.svg" alt="Secondary persona image" /> 
+                <img
+                  src="/images/safespace-secondary_persona.svg"
+                  alt="Secondary persona image"
+                  onClick={() =>
+                    openLightbox(
+                      '/images/safespace-secondary_persona.svg',
+                      'Secondary persona image',
+                    )
+                  }
+                  style={{ cursor: 'zoom-in' }}
+                /> 
               </div>
               <a
                 href="/documents/safespace-secondary_persona.pdf"
@@ -275,7 +340,12 @@ export default function SafeSpaceCaseStudy({ project }) {
             The sitemap was drafted around three main goals: enabling users to create reports, access and review reports, and view anonymous reports on a public dashboard.
           </p>
           <div className="uxcs-image-placeholder uxcs-sitemap-placeholder">
-            <img src="/images/safespace-sitemap.svg" alt="Sitemap diagram" />
+            <img
+              src="/images/safespace-sitemap.svg"
+              alt="Sitemap diagram"
+              onClick={() => openLightbox('/images/safespace-sitemap.svg', 'Sitemap diagram')}
+              style={{ cursor: 'zoom-in' }}
+            />
           </div>
         </div>
       </section>
@@ -288,7 +358,12 @@ export default function SafeSpaceCaseStudy({ project }) {
             As the wireframes were developed, different formats and layouts were explored for each screen, with accessibility prioritized for trade workers wearing gloves. To support this need, a larger central report button was designed to ensure easier and more reliable use.
           </p>
           <div className="uxcs-wireframe-placeholder">
-            <img src="/images/safespace-low-fi.png" alt="Lo-Fi wireframes Mockup" />
+            <img
+              src="/images/safespace-low-fi.png"
+              alt="Lo-Fi wireframes Mockup"
+              onClick={() => openLightbox('/images/safespace-low-fi.png', 'Lo-Fi wireframes Mockup')}
+              style={{ cursor: 'zoom-in' }}
+            />
           </div>
         </div>
       </section>
@@ -298,7 +373,14 @@ export default function SafeSpaceCaseStudy({ project }) {
         <div className="uxcs-section-inner">
           <h2 className="uxcs-section-title">Design System</h2>
           <div className="uxcs-image-placeholder uxcs-styleguide-placeholder">
-            <img src="/images/safespace-style_guide.svg" alt="Styleguide image" />
+            <img
+              src="/images/safespace-style_guide.svg"
+              alt="Styleguide image"
+              onClick={() =>
+                openLightbox('/images/safespace-style_guide.svg', 'Styleguide image')
+              }
+              style={{ cursor: 'zoom-in' }}
+            />
           </div>
         </div>
       </section>
@@ -338,16 +420,56 @@ export default function SafeSpaceCaseStudy({ project }) {
 
           <div className="uxcs-feedback-card-placeholders">
             <div className="uxcs-image-placeholder uxcs-feedback-card-placeholder">
-              <img src="/images/safespace-feedback1.svg" alt="Feedback implementation card 1" />
+              <img
+                src="/images/safespace-feedback1.svg"
+                alt="Feedback implementation card 1"
+                onClick={() =>
+                  openLightbox(
+                    '/images/safespace-feedback1.svg',
+                    'Feedback implementation card 1',
+                  )
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
             <div className="uxcs-image-placeholder uxcs-feedback-card-placeholder">
-              <img src="/images/safespace-feedback2.svg" alt="Feedback implementation card 2" />
+              <img
+                src="/images/safespace-feedback2.svg"
+                alt="Feedback implementation card 2"
+                onClick={() =>
+                  openLightbox(
+                    '/images/safespace-feedback2.svg',
+                    'Feedback implementation card 2',
+                  )
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
             <div className="uxcs-image-placeholder uxcs-feedback-card-placeholder">
-              <img src="/images/safespace-feedback3.svg" alt="Feedback implementation card 3" />
+              <img
+                src="/images/safespace-feedback3.svg"
+                alt="Feedback implementation card 3"
+                onClick={() =>
+                  openLightbox(
+                    '/images/safespace-feedback3.svg',
+                    'Feedback implementation card 3',
+                  )
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
             <div className="uxcs-image-placeholder uxcs-feedback-card-placeholder">
-              <img src="/images/safespace-feedback4.svg" alt="Feedback implementation card 4" />
+              <img
+                src="/images/safespace-feedback4.svg"
+                alt="Feedback implementation card 4"
+                onClick={() =>
+                  openLightbox(
+                    '/images/safespace-feedback4.svg',
+                    'Feedback implementation card 4',
+                  )
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
           </div>
         </div>
@@ -362,7 +484,14 @@ export default function SafeSpaceCaseStudy({ project }) {
             SafeSpace includes a web supplement that empowers foremen, managers, and companies to create safer work environments. It summarizes reports within a set radius and provides recommended actions, enabling leadership and real change.
           </p>
           <div className="uxcs-image-placeholder uxcs-web-supplement-placeholder">
-            <img src="/images/safespace-web_supp.png" alt="Web supplement Mockup" />
+            <img
+              src="/images/safespace-web_supp.png"
+              alt="Web supplement Mockup"
+              onClick={() =>
+                openLightbox('/images/safespace-web_supp.png', 'Web supplement Mockup')
+              }
+              style={{ cursor: 'zoom-in' }}
+            />
           </div>
         </div>
       </section>
@@ -375,13 +504,27 @@ export default function SafeSpaceCaseStudy({ project }) {
           <div className="uxcs-marketing-grid">
             <div className="uxcs-marketing-card">
               <div className="uxcs-image-placeholder uxcs-marketing-placeholder">
-                <img src="/images/safespace-ig.png" alt="Instagram Mockup" />
+                <img
+                  src="/images/safespace-ig.png"
+                  alt="Instagram Mockup"
+                  onClick={() =>
+                    openLightbox('/images/safespace-ig.png', 'Instagram Mockup')
+                  }
+                  style={{ cursor: 'zoom-in' }}
+                />
               </div>
               <a href="https://www.instagram.com/safespace__app" target="_blank" rel="noopener noreferrer" className="uxcs-marketing-cta">Instagram →</a>
             </div>
             <div className="uxcs-marketing-card">
               <div className="uxcs-image-placeholder uxcs-marketing-placeholder">
-                <img src="/images/safespace-web.png" alt="Website Mockup" />
+                <img
+                  src="/images/safespace-web.png"
+                  alt="Website Mockup"
+                  onClick={() =>
+                    openLightbox('/images/safespace-web.png', 'Website Mockup')
+                  }
+                  style={{ cursor: 'zoom-in' }}
+                />
               </div>
               <a href="https://safe-space.figma.site" target="_blank" rel="noopener noreferrer" className="uxcs-marketing-cta">Website / Blog →</a>
               </div>
@@ -395,19 +538,33 @@ export default function SafeSpaceCaseStudy({ project }) {
           <h2 className="uxcs-section-title">Promotional Materials</h2>
           <div className="uxcs-promo-grid">
             <div className="uxcs-image-placeholder uxcs-promo-placeholder">
-              <img src="/images/safespace-brochure.jpg" alt="Brochure Mockup" />
+              <img
+                src="/images/safespace-brochure.jpg"
+                alt="Brochure Mockup"
+                onClick={() =>
+                  openLightbox('/images/safespace-brochure.jpg', 'Brochure Mockup')
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
             <div className="uxcs-image-placeholder uxcs-promo-placeholder">
-              <img src="/images/safespace-bcards.jpg" alt="Business Cards Mockup" />
+              <img
+                src="/images/safespace-bcards.jpg"
+                alt="Business Cards Mockup"
+                onClick={() =>
+                  openLightbox('/images/safespace-bcards.jpg', 'Business Cards Mockup')
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
-            <a
+            {/* <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="uxcs-image-placeholder uxcs-promo-placeholder uxcs-youtube-placeholder"
             >
               <span className="uxcs-placeholder-label">SafeSpace Promo Video</span>
-            </a>
+            </a> */}
           </div>
         </div>
       </section>
@@ -421,7 +578,14 @@ export default function SafeSpaceCaseStudy({ project }) {
             Visual assets, colour, and typography was refined for the hi-fi wireframes to strengthen clarity and hierarchy while maintaining accessibility.
           </p>
           <div className="uxcs-image-placeholder uxcs-hifi-placeholder">
-            <img src="/images/safespace-hi-fi.png" alt="Hi-Fi wireframes Mockup" />
+            <img
+              src="/images/safespace-hi-fi.png"
+              alt="Hi-Fi wireframes Mockup"
+              onClick={() =>
+                openLightbox('/images/safespace-hi-fi.png', 'Hi-Fi wireframes Mockup')
+              }
+              style={{ cursor: 'zoom-in' }}
+            />
           </div>
         </div>
       </section>
@@ -444,15 +608,36 @@ export default function SafeSpaceCaseStudy({ project }) {
               </p>
             </div>
             <div className="uxcs-image-placeholder uxcs-achievements-photo-placeholder">
-              <img src="/images/safespace-photo2.jpg" alt="Team Photo" />
+              <img
+                src="/images/safespace-photo2.jpg"
+                alt="Team Photo"
+                onClick={() =>
+                  openLightbox('/images/safespace-photo2.jpg', 'Team Photo')
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
           </div>
           <div className="uxcs-achievements-photos">
             <div className="uxcs-image-placeholder uxcs-achievements-photo-placeholder">
-              <img src="/images/safespace-photo1.jpg" alt="Achievement Photo" />
+              <img
+                src="/images/safespace-photo1.jpg"
+                alt="Achievement Photo"
+                onClick={() =>
+                  openLightbox('/images/safespace-photo1.jpg', 'Achievement Photo')
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
             <div className="uxcs-image-placeholder uxcs-achievements-photo-placeholder">
-              <img src="/images/safespace-photo3.jpg" alt="Achievement Photo" />
+              <img
+                src="/images/safespace-photo3.jpg"
+                alt="Achievement Photo"
+                onClick={() =>
+                  openLightbox('/images/safespace-photo3.jpg', 'Achievement Photo')
+                }
+                style={{ cursor: 'zoom-in' }}
+              />
             </div>
           </div>
           <div className="uxcs-achievements-cards">
@@ -481,6 +666,50 @@ export default function SafeSpaceCaseStudy({ project }) {
         <span className="uxcs-back-to-timeline-arrow" />
         <span className="uxcs-back-to-timeline-label">Timeline</span>
       </button>
+
+      {lightboxImage && (
+        <div
+          className="uxcs-image-lightbox"
+          role="dialog"
+          aria-modal="true"
+          onClick={closeLightbox}
+        >
+          <div className="uxcs-image-lightbox-inner" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="uxcs-image-lightbox-close"
+              onClick={closeLightbox}
+              aria-label="Close enlarged image"
+            >
+              ×
+            </button>
+
+            <div className="uxcs-image-lightbox-toolbar">
+              <button
+                type="button"
+                onClick={() => setLightboxZoom((z) => Math.max(0.5, z - 0.25))}
+              >
+                −
+              </button>
+              <span>{Math.round(lightboxZoom * 100)}%</span>
+              <button
+                type="button"
+                onClick={() => setLightboxZoom((z) => Math.min(4, z + 0.25))}
+              >
+                +
+              </button>
+            </div>
+
+            <div className="uxcs-image-lightbox-viewport">
+              <img
+                src={lightboxImage.src}
+                alt={lightboxImage.alt}
+                style={{ transform: `scale(${lightboxZoom})` }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </article>
   )
 }
