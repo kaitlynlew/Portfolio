@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { PROJECTS } from '../data/projects'
 
 export default function HomePage() {
@@ -73,6 +74,8 @@ export default function HomePage() {
     if (!('IntersectionObserver' in window)) {
       header?.classList.add('projects-header-visible')
       cards.forEach((card) => card.classList.add('project-card-visible'))
+      // Grid height changes with filtering; keep footer animation in sync.
+      ScrollTrigger.refresh()
       return
     }
 
@@ -97,6 +100,13 @@ export default function HomePage() {
 
     if (header) observer.observe(header)
     cards.forEach((card) => observer.observe(card))
+
+    // Filtering changes the number of rendered project cards, which changes
+    // layout and therefore the footer's trigger position. Recompute so the
+    // footer reveal animation runs correctly without requiring a scroll.
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
 
     return () => observer.disconnect()
   }, [filteredProjects.length])

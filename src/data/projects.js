@@ -20,15 +20,13 @@ export const PROJECTS = [
     category: "graphic",
   },
   {
-    id: "inklink",
-    title: "InkLink",
+    id: "sensa",
+    title: "Sensa",
     description:
-      "A collaborative chain writing web app for writers to jump into story chains, add their own twist, and watch narratives grow beyond imagination.",
-    tags: ["App", "Website", "UI/UX Design"],
-    image: "/images/inklink-mockup.png",
+      "Sensa listens to what your body already knows — tracking the invisible signals behind your cravings so you can take back control, one urge at a time.",
+    tags: ["App", "UI/UX Design"],
+    image: "/images/sensa.png",
     category: "uiux",
-    githubUrl: "https://inklink-fe.onrender.com/",
-    websiteUrl: "https://inklink.framer.website/",
   },
   {
     id: "korea",
@@ -40,13 +38,15 @@ export const PROJECTS = [
     category: "graphic",
   },
   {
-    id: "sensa",
-    title: "Sensa",
+    id: "inklink",
+    title: "InkLink",
     description:
-      "Sensa listens to what your body already knows — tracking the invisible signals behind your cravings so you can take back control, one urge at a time.",
-    tags: ["App", "UI/UX Design"],
-    image: "/images/sensa.png",
+      "A collaborative chain writing web app for writers to jump into story chains, add their own twist, and watch narratives grow beyond imagination.",
+    tags: ["App", "Website", "UI/UX Design"],
+    image: "/images/inklink-mockup.png",
     category: "uiux",
+    githubUrl: "https://inklink-fe.onrender.com/",
+    websiteUrl: "https://inklink.framer.website/",
   },
   // {
   //   id: "slotion",

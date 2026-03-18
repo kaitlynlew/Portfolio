@@ -24,8 +24,10 @@ export default function Layout() {
   useEffect(() => {
     const footer = footerRef.current
     if (!footer) return
+
     const items = [...footer.children]
     gsap.set(items, { opacity: 0, y: 32 })
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: footer,
@@ -33,6 +35,7 @@ export default function Layout() {
         toggleActions: 'play none none reverse',
       },
     })
+
     tl.to(items, {
       opacity: 1,
       y: 0,
@@ -40,30 +43,38 @@ export default function Layout() {
       stagger: 0.1,
       ease: 'power3.out',
     })
-    // If footer is already in view (e.g. short page like About), show it immediately
+
+    // If the footer is already visible (e.g. a short About page with no scroll
+    // range), show it immediately so opacity doesn't stay at 0.
     const inView = () => {
       const rect = footer.getBoundingClientRect()
-      return rect.top < window.innerHeight * 0.95
+      return rect.top < window.innerHeight && rect.bottom > 0
     }
-    if (inView()) {
-      tl.play(0)
-    } else {
-      const id = setTimeout(() => {
-        if (inView()) tl.play(0)
-      }, 150)
-      return () => {
-        clearTimeout(id)
-        tl.scrollTrigger?.kill()
-      }
+
+    const tryPlay = () => {
+      ScrollTrigger.refresh()
+      if (inView()) tl.play(0)
     }
-    return () => tl.scrollTrigger?.kill()
-  }, [])
+
+    requestAnimationFrame(() => {
+      tryPlay()
+    })
+
+    const id = setTimeout(() => {
+      tryPlay()
+    }, 150)
+
+    return () => {
+      clearTimeout(id)
+      tl.scrollTrigger?.kill()
+    }
+  }, [location.pathname])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const isGridPage = location.pathname === '/' || location.pathname === '/about'
+  const isGridPage = location.pathname === '/' || location.pathname.startsWith('/about')
 
   return (
     <div className={isGridPage ? 'page-grid-shell' : ''}>
