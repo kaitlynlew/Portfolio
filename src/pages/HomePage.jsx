@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { PROJECTS } from '../data/projects'
+import { getCaseStudyByProjectId } from '../data/projectCaseStudies'
 
 export default function HomePage() {
   const [filter, setFilter] = useState('all')
@@ -106,6 +107,22 @@ export default function HomePage() {
     // footer reveal animation runs correctly without requiring a scroll.
     requestAnimationFrame(() => {
       ScrollTrigger.refresh()
+
+      // IntersectionObserver callbacks can miss "already intersecting" items
+      // after a filter switch + layout shift. As a fallback, immediately
+      // reveal anything currently in the viewport so cards like "Sojubly"
+      // show up without requiring an extra scroll.
+      const isElementInViewport = (el) => {
+        const rect = el.getBoundingClientRect()
+        return rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15
+      }
+
+      if (header && isElementInViewport(header)) {
+        header.classList.add('projects-header-visible')
+      }
+      cards.forEach((card) => {
+        if (isElementInViewport(card)) card.classList.add('project-card-visible')
+      })
     })
 
     return () => observer.disconnect()
@@ -196,13 +213,14 @@ export default function HomePage() {
                 </div>
                 <Link
                   to={
-                    ['safespace', 'inklink', 'sensa'].includes(project.id)
+                    ['safespace', 'inklink', 'sensa'].includes(project.id) ||
+                    getCaseStudyByProjectId(project.id)
                       ? `/project/${project.id}`
                       : '/under-construction'
                   }
                   className="project-cta"
                 >
-                  {['safespace', 'inklink', 'sensa'].includes(project.id)
+                  {['safespace', 'inklink', 'sensa'].includes(project.id) || getCaseStudyByProjectId(project.id)
                     ? 'View Case Study'
                     : 'View Project'}
                 </Link>

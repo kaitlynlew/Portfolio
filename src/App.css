@@ -2826,8 +2826,8 @@ body {
 .uxcs-image-lightbox-viewport img {
   display: block;
   margin: 0 auto;
-  transform-origin: top left;
   max-width: none;
+  max-height: none;
 }
 
 /* User Research stat cards */

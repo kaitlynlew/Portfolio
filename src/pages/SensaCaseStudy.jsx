@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 const TIMELINE_SECTIONS = [
   { id: 'competitive-analysis', label: 'COMPETITIVE ANALYSIS' },
@@ -12,7 +12,9 @@ const YOUTUBE_VIDEO_ID = 'ZlWljG38Yrc?si=_BDRcB99M6-NgZDY'
 
 export default function SensaCaseStudy({ project }) {
   const [lightboxImage, setLightboxImage] = useState(null)
-  const [lightboxZoom, setLightboxZoom] = useState(1.5)
+  const [lightboxZoom, setLightboxZoom] = useState(1)
+  const [lightboxFitSize, setLightboxFitSize] = useState(null)
+  const lightboxViewportRef = useRef(null)
   const [showVideo, setShowVideo] = useState(false)
 
   const title = project?.title ?? 'Sensa'
@@ -32,12 +34,33 @@ export default function SensaCaseStudy({ project }) {
 
   const openLightbox = (src, alt) => {
     setLightboxImage({ src, alt })
-    setLightboxZoom(1.5)
+    setLightboxZoom(1)
+    setLightboxFitSize(null)
   }
 
   const closeLightbox = () => {
     setLightboxImage(null)
-    setLightboxZoom(1.5)
+    setLightboxZoom(1)
+    setLightboxFitSize(null)
+  }
+
+  const handleLightboxImageLoad = (e) => {
+    const viewportEl = lightboxViewportRef.current
+    if (!viewportEl) return
+
+    const viewportRect = viewportEl.getBoundingClientRect()
+    const naturalWidth = e.currentTarget.naturalWidth
+    const naturalHeight = e.currentTarget.naturalHeight
+    if (!naturalWidth || !naturalHeight || viewportRect.width <= 0 || viewportRect.height <= 0) {
+      return
+    }
+
+    // Compute a baseline scale that fits the entire image into the viewport.
+    const fitScale = Math.min(viewportRect.width / naturalWidth, viewportRect.height / naturalHeight)
+    setLightboxFitSize({
+      width: naturalWidth * fitScale,
+      height: naturalHeight * fitScale,
+    })
   }
 
   return (
@@ -319,11 +342,19 @@ export default function SensaCaseStudy({ project }) {
               </button>
             </div>
 
-            <div className="uxcs-image-lightbox-viewport">
+            <div className="uxcs-image-lightbox-viewport" ref={lightboxViewportRef}>
               <img
                 src={lightboxImage.src}
                 alt={lightboxImage.alt}
-                style={{ transform: `scale(${lightboxZoom})` }}
+                onLoad={handleLightboxImageLoad}
+                style={
+                  lightboxFitSize
+                    ? {
+                        width: lightboxFitSize.width * lightboxZoom,
+                        height: lightboxFitSize.height * lightboxZoom,
+                      }
+                    : { maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto' }
+                }
               />
             </div>
           </div>
