@@ -67,8 +67,24 @@ export const PROJECT_CASE_STUDIES = {
     ],
   },
 
-  // Add katseye (and copy this block) when ready to publish the case study.
-  // katseye: { ... },
+  sensa: {
+    bannerImage: "/images/sensa.png",
+    subtitle: "December 2025 (2 Weeks)",
+    role: "UX/UI Designer",
+    skills: "UX/UI Design, UX/UI Research, Video Editing",
+    tools: ["Figma", "Figma Make", "Premiere Pro"],
+    heroImage: "/images/sensa.png",
+    heroImageAlt: "Sensa app hero image",
+    designIntentText: [
+      "Sensa is an app that helps you take back control of your cravings by listening to what your body already knows. It tracks the invisible signals behind your cravings so you can take back control, one urge at a time.",
+    ],
+    showDieline: false,
+    finalDesignSlides: [
+      { src: "/images/sensa-slide-1.jpg", alt: "Sensa key visual 1" },
+      { src: "/images/sensa-slide-2.jpg", alt: "Sensa key visual 2" },
+      { src: "/images/sensa-slide-3.jpg", alt: "Sensa key visual 3" },
+    ],
+  },
 };
 
 export function getCaseStudyByProjectId(projectId) {

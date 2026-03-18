@@ -40,13 +40,13 @@ export const PROJECTS = [
     category: "graphic",
   },
   {
-    id: "katseye",
-    title: "Katseye Posters",
+    id: "sensa",
+    title: "Sensa",
     description:
-      "A concept poster series for KATSEYE, using bold visuals and dynamic lighting to capture the group’s confident, modern, and globally driven pop identity.",
-    tags: ["Graphic Design", "Illustration"],
-    image: "/images/katseye-mockup.jpg",
-    category: "graphic",
+      "Sensa listens to what your body already knows — tracking the invisible signals behind your cravings so you can take back control, one urge at a time.",
+    tags: ["App", "UI/UX Design"],
+    image: "/images/sensa.png",
+    category: "uiux",
   },
   // {
   //   id: "slotion",

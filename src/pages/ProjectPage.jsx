@@ -6,6 +6,7 @@ import GraphicProjectPage from './GraphicProjectPage'
 import UnderConstructionPage from './UnderConstructionPage'
 import SafeSpaceCaseStudy from './SafeSpaceCaseStudy'
 import InkLinkCaseStudy from './InkLinkCaseStudy'
+import SensaCaseStudy from './SensaCaseStudy'
 
 export default function ProjectPage() {
   const { projectId } = useParams()
@@ -35,6 +36,10 @@ export default function ProjectPage() {
 
   if (project.id === 'inklink') {
     return <InkLinkCaseStudy project={project} />
+  }
+
+  if (project.id === 'sensa') {
+    return <SensaCaseStudy project={project} />
   }
 
   if (caseStudy) {

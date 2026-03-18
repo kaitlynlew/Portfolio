@@ -2579,6 +2579,11 @@ body {
   scroll-margin-top: 6rem;
 }
 
+/* Extra breathing room before Sensa demo video */
+.uxcs-video-section {
+  padding-top: 5rem;
+}
+
 .uxcs-section-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -2713,6 +2718,116 @@ body {
 .uxcs-persona-placeholder {
   aspect-ratio: 3 / 5;
   min-height: 560px;
+}
+
+/* Sensa user persona image – fill card */
+.uxcs-user-research-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}
+
+/* User journey + user flow (Sensa) */
+.uxcs-user-journey-and-sitemap-placeholder {
+  width: 100%;
+  margin-top: 1.25rem;
+  min-height: auto;
+  align-items: flex-start;
+}
+
+.uxcs-user-journey-and-sitemap-placeholder img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Image lightbox for detailed UX diagrams */
+.uxcs-image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.uxcs-image-lightbox-inner {
+  position: relative;
+  max-width: min(1400px, 100%);
+  max-height: 90vh;
+  width: 100%;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 1rem 1rem 1.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.uxcs-image-lightbox-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  font-size: 1.75rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.uxcs-image-lightbox-toolbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 0.85rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0.9rem;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.uxcs-image-lightbox-toolbar button {
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.9);
+  color: inherit;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.uxcs-image-lightbox-toolbar span {
+  min-width: 3rem;
+  text-align: center;
+}
+
+.uxcs-image-lightbox-viewport {
+  margin-top: 1.5rem;
+  height: calc(90vh - 3rem);
+  overflow: auto;
+  border-radius: 12px;
+  background: #020617;
+}
+
+.uxcs-image-lightbox-viewport img {
+  display: block;
+  margin: 0 auto;
+  transform-origin: top left;
+  max-width: none;
 }
 
 /* User Research stat cards */
@@ -3061,6 +3176,93 @@ body {
 
 .uxcs-hifi-placeholder:has(img) {
   background: transparent;
+}
+
+/* Embedded YouTube video (Sensa) */
+.uxcs-youtube-wrapper {
+  margin-top: 1.5rem;
+}
+
+.uxcs-youtube-embed {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-bottom: 56.25%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+}
+
+.uxcs-youtube-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.uxcs-youtube-thumb {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.uxcs-youtube-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.uxcs-youtube-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.0),
+    rgba(15, 23, 42, 0.7)
+  );
+  color: #e5e7eb;
+}
+
+.uxcs-youtube-play-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.9);
+  border: 2px solid rgba(248, 250, 252, 0.85);
+  position: relative;
+}
+
+.uxcs-youtube-play-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent #e5e7eb;
+}
+
+.uxcs-youtube-thumb-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* Achievements */

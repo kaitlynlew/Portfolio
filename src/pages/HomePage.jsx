@@ -186,13 +186,13 @@ export default function HomePage() {
                 </div>
                 <Link
                   to={
-                    ['safespace', 'inklink', 'sojubly', 'katseye', 'korea'].includes(project.id)
+                    ['safespace', 'inklink', 'sensa'].includes(project.id)
                       ? `/project/${project.id}`
                       : '/under-construction'
                   }
                   className="project-cta"
                 >
-                  {['safespace', 'inklink', 'sojubly', 'katseye', 'korea'].includes(project.id)
+                  {['safespace', 'inklink', 'sensa'].includes(project.id)
                     ? 'View Case Study'
                     : 'View Project'}
                 </Link>
