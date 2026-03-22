@@ -128,7 +128,7 @@ export default function Layout() {
           <a href="https://www.linkedin.com/in/kaitlynrlew/" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
-          <a href="mailto:l.kaitlyn@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+          <a href="mailto:l.kaitlynr@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
           <a href="/documents/resume.pdf" target="_blank" rel="noopener noreferrer">
             Resume
           </a>
