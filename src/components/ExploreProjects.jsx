@@ -15,6 +15,7 @@ const INTERESTS = [
 
 export default function ExploreInterests() {
   const containerRef = useRef(null)
+  // Runtime positions for each draggable interest chip.
   const [items, setItems] = useState(() =>
     Array.from({ length: INTEREST_COUNT }, (_, i) => ({
       id: i,
@@ -22,6 +23,7 @@ export default function ExploreInterests() {
       y: 0,
     })),
   )
+  // Mutable drag metadata to avoid rerendering on every pointer move event.
   const dragStateRef = useRef({
     id: null,
     offsetX: 0,
@@ -71,6 +73,7 @@ export default function ExploreInterests() {
     let x = clientX - rect.left - offsetX
     let y = clientY - rect.top - offsetY
 
+    // Keep each draggable inside the visible interaction area.
     const maxX = rect.width - size
     const maxY = rect.height - size
     x = Math.min(Math.max(0, x), Math.max(0, maxX))
@@ -87,6 +90,7 @@ export default function ExploreInterests() {
     const target = event.currentTarget
     const rect = target.getBoundingClientRect()
 
+    // Preserve cursor-to-card offset so drag does not "jump" on pickup.
     dragStateRef.current = {
       id,
       offsetX: event.clientX - rect.left,
@@ -114,6 +118,8 @@ export default function ExploreInterests() {
     <div
       ref={containerRef}
       className="explore-interests-layer"
+      // Pointer handlers live on the container so dragging remains smooth
+      // even if the pointer moves faster than the active card.
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerUp}
