@@ -8,6 +8,7 @@ const BRUSH_COLORS = [
   { name: 'Yellow', value: '#facc15' },
 ]
 
+// Fallback name used when the user clears the export input.
 const defaultExportName = () => `jam-board-${Date.now()}`
 
 function sanitizeFilename(name) {
@@ -30,6 +31,7 @@ export default function JamBoard() {
   const [showExportOverlay, setShowExportOverlay] = useState(false)
   const [exportFilename, setExportFilename] = useState(defaultExportName())
 
+  // Converts pointer/touch coordinates to canvas-local coordinates.
   const getPoint = useCallback((e) => {
     const canvas = canvasRef.current
     if (!canvas) return null
@@ -42,6 +44,7 @@ export default function JamBoard() {
     }
   }, [])
 
+  // Draws one stroke object; redraw() replays these in order.
   const drawToCanvas = useCallback((ctx, path) => {
     if (!path.points || path.points.length === 0) return
     ctx.strokeStyle = path.color
@@ -54,6 +57,7 @@ export default function JamBoard() {
     ctx.stroke()
   }, [])
 
+  // Repaints the full canvas from state so undo/redo stays deterministic.
   const redraw = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -76,6 +80,7 @@ export default function JamBoard() {
     const container = containerRef.current
     if (!canvas || !container) return
 
+    // Keep canvas sharp on high-DPI displays and in sync with container size.
     const resize = () => {
       const dpr = window.devicePixelRatio || 1
       const rect = container.getBoundingClientRect()
@@ -95,6 +100,7 @@ export default function JamBoard() {
     return () => observer.disconnect()
   }, [redraw])
 
+  // Start a new stroke and clear redo history after a fresh draw action.
   const startStroke = (e) => {
     e.preventDefault()
     const point = getPoint(e)
@@ -157,6 +163,7 @@ export default function JamBoard() {
 
   const closeExportOverlay = () => setShowExportOverlay(false)
 
+  // Exports what is currently painted on the canvas as a PNG file.
   const confirmExport = () => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -171,6 +178,7 @@ export default function JamBoard() {
 
   useEffect(() => {
     if (!showExportOverlay) return
+    // Allow quick close with Escape while export dialog is open.
     const onKeyDown = (e) => {
       if (e.key === 'Escape') closeExportOverlay()
     }
