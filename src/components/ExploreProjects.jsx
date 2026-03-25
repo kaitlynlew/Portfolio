@@ -30,7 +30,7 @@ export default function ExploreInterests() {
     offsetY: 0,
   })
 
-  // Lay out items in fixed positions (roughly matching the reference mock)
+  // Lay out items in fixed positions
   useEffect(() => {
     const container = containerRef.current
     if (!container) return

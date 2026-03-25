@@ -2720,6 +2720,19 @@ body {
   min-height: 560px;
 }
 
+/* Persona images can have varying aspect ratios (png vs svg). Use cover so they
+   fill the placeholder's full width/height instead of leaving letterboxing. */
+.uxcs-persona-placeholder img {
+  object-fit: contain;
+}
+
+/* InkLink persona images are ~494x525; match the placeholder ratio so they
+   fill the box without letterboxing or cropping. */
+.uxcs-persona-placeholder--inklink {
+  aspect-ratio: 494 / 525;
+  min-height: 0;
+}
+
 /* Sensa user persona image – fill card */
 .uxcs-user-research-placeholder img {
   width: 100%;
