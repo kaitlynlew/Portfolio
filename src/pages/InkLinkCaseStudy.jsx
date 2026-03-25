@@ -111,20 +111,17 @@ export default function InkLinkCaseStudy({ project }) {
                 </ul>
               </div>
               <div className="uxcs-meta-column">
-                <p className="uxcs-meta-heading">Skills</p>
-                <ul className="uxcs-meta-list">
-                  <li>User Research</li>
-                  <li>Interaction Design</li>
-                  <li>Prototyping</li>
-                  <li>Design Systems</li>
-                </ul>
-              </div>
-              <div className="uxcs-meta-column">
                 <p className="uxcs-meta-heading">Toolkit</p>
                 <ul className="uxcs-meta-list">
                   <li>Figma</li>
                   <li>FigJam</li>
                   <li>Notion</li>
+                </ul>
+              </div>
+              <div className="uxcs-meta-column">
+                <p className="uxcs-meta-heading">Team</p>
+                <ul className="uxcs-meta-list">
+                  <li>8 members</li>
                 </ul>
               </div>
             </div>
