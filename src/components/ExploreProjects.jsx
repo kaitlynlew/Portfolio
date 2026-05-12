@@ -128,23 +128,17 @@ export default function ExploreInterests() {
         <button
           key={item.id}
           type="button"
-          className="explore-interests-placeholder"
+          className="explore-interests-card"
           style={{
             transform: `translate(${item.x}px, ${item.y}px)`,
           }}
           onPointerDown={(event) => handlePointerDown(item.id, event)}
         >
-          {INTERESTS[item.id]?.src ? (
-            <img
-              src={INTERESTS[item.id].src}
-              alt={INTERESTS[item.id].alt}
-              className="explore-interests-image"
-            />
-          ) : (
-            <span className="explore-interests-placeholder-label">
-              Interest {item.id + 1}
-            </span>
-          )}
+          <img
+            src={INTERESTS[item.id].src}
+            alt={INTERESTS[item.id].alt}
+            className="explore-interests-image"
+          />
           <span className="explore-interests-tag">
             {INTERESTS[item.id]?.label ?? `Interest ${item.id + 1}`}
           </span>
